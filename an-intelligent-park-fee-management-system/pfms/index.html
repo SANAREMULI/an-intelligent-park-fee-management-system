@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Park Fee Management System — Sekenani Gate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="go('home')">
+    <div class="nav-logo-icon">🦁</div>
+    <div class="nav-logo-text">Maasai Mara PFMS<span>Sekenani Gate</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="go('home')" id="nl-home" class="active">Home</a></li>
+    <li><a onclick="go('book')" id="nl-book">Book a Ticket</a></li>
+    <li><a onclick="go('verify')" id="nl-verify">Verify Ticket</a></li>
+    <li><a onclick="go('member')" id="nl-member">Membership</a></li>
+    <li><a onclick="go('feedback')" id="nl-feedback">Feedback</a></li>
+    <li><a onclick="go('admin')" id="nl-admin">Admin</a></li>
+    <li id="nl-user-chip" style="display:none"><a onclick="go('admin')" style="display:flex;align-items:center;gap:7px;color:var(--gold)"><span style="width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block"></span><span id="nav-user-name">Admin</span></a></li>
+    <li id="nl-client-chip" style="display:none"><a onclick="go('clogin')" id="nl-clogin-chip" style="display:flex;align-items:center;gap:7px;color:var(--gold)"><span style="width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block"></span><span id="nav-client-name">Guest</span></a></li>
+    <li id="nl-auth"><a onclick="go('clogin')" class="btn-nav" id="nl-clogin">Sign In</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🌍 Sekenani Gate · Maasai Mara National Reserve</div>
+      <h1>Step into the wild without standing in line</h1>
+      <p>Book your Maasai Mara entry online in minutes — get your QR ticket instantly and walk straight through the gate.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="go('book')">Book a Ticket</button>
+        <button class="btn-outline" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">View Entry Fees</button>
+      </div>
+    </div>
+    <div class="hero-scroll">SCROLL<div class="scroll-arr"></div></div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item"><span class="stat-num">1.5M+</span><div class="stat-lbl">Visitors per year</div></div>
+      <div class="stat-item"><span class="stat-num">1,510</span><div class="stat-lbl">km² Reserve area</div></div>
+      <div class="stat-item"><span class="stat-num">95+</span><div class="stat-lbl">Mammal species</div></div>
+      <div class="stat-item"><span class="stat-num">24/7</span><div class="stat-lbl">Online booking</div></div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="problem-section">
+    <div class="problem-grid">
+      <div class="prob-img-wrap">
+        <div class="prob-img">
+          <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80" alt="Maasai Mara wildlife">
+        </div>
+        <div class="prob-badge">
+          <span class="big">100%</span>
+          <span class="sm">Paperless booking</span>
+        </div>
+      </div>
+      <div>
+        <div class="sec-tag">The problem we solve</div>
+        <h2 class="sec-title">From paper queues to a single tap</h2>
+        <p class="sec-sub">Manual fee collection at Sekenani Gate created bottlenecks, lost revenue, and frustrated visitors. We replaced it entirely.</p>
+        <ul class="pain-list">
+          <li>
+            <div class="pain-icon">⏳</div>
+            <div class="pain-text"><strong>Long queues</strong><p>Visitors waited hours at the gate during peak season, cutting into precious wildlife time.</p></div>
+          </li>
+          <li>
+            <div class="pain-icon">🧾</div>
+            <div class="pain-text"><strong>Lost receipts & revenue leakage</strong><p>Paper tickets were misplaced or duplicated, creating gaps in revenue accounting.</p></div>
+          </li>
+          <li>
+            <div class="pain-icon">📊</div>
+            <div class="pain-text"><strong>Inaccurate visitor records</strong><p>Manual headcounts produced unreliable data, hampering park management decisions.</p></div>
+          </li>
+          <li>
+            <div class="pain-icon">💳</div>
+            <div class="pain-text"><strong>Cash-only payments</strong><p>No digital payment options excluded modern travellers and introduced cash-handling risk.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTIVES -->
+  <section style="background:var(--white);padding:88px 5%">
+    <div style="max-width:880px;margin:0 auto">
+      <div class="sec-hdr">
+        <div class="sec-tag">Project objectives</div>
+        <h2 class="sec-title">Built around four research objectives</h2>
+        <p class="sec-sub">Each objective was driven by a specific operational gap identified at Sekenani Gate.</p>
+      </div>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <div class="obj-num">01</div>
+          <div class="obj-ttl">Automate fee collection</div>
+          <p class="obj-desc">Replace paper-based collection with a digital payment pipeline supporting M-Pesa STK, Visa/Mastercard, and cash reconciliation.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">02</div>
+          <div class="obj-ttl">Real-time monitoring</div>
+          <p class="obj-desc">Provide live dashboards showing daily visitor counts, revenue totals, and gate throughput to KWS management staff.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">03</div>
+          <div class="obj-ttl">User-friendly interface</div>
+          <p class="obj-desc">Design an intuitive booking flow accessible to all visitors regardless of technical background, with full mobile support.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-num">04</div>
+          <div class="obj-ttl">Comprehensive reports</div>
+          <p class="obj-desc">Generate audit trails, nationality breakdowns, and revenue summaries to support strategic KWS decisions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div style="max-width:980px;margin:0 auto">
+      <div class="sec-hdr">
+        <div class="sec-tag">Entry fees</div>
+        <h2 class="sec-title">Transparent gate pricing</h2>
+        <p class="sec-sub">All fees are per person per day as set by Kenya Wildlife Service for the current season.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="p-card">
+          <div class="p-cat">Category 1</div>
+          <div class="p-ttl">Kenyan Citizens</div>
+          <div class="p-row"><span class="p-person">Adult</span><span class="p-amt">KSh 1,500 <span>/day</span></span></div>
+          <div class="p-row"><span class="p-person">Child (under 18)</span><span class="p-amt">KSh 500 <span>/day</span></span></div>
+          <div style="margin-top:18px"><button class="btn-primary" style="width:100%" onclick="go('book')">Book Now</button></div>
+        </div>
+        <div class="p-card featured">
+          <div class="p-cat">Category 2</div>
+          <div class="p-ttl">East African Residents</div>
+          <div class="p-row"><span class="p-person">Adult</span><span class="p-amt">KSh 3,000 <span>/day</span></span></div>
+          <div class="p-row"><span class="p-person">Child (under 18)</span><span class="p-amt">KSh 1,000 <span>/day</span></span></div>
+          <div style="margin-top:18px"><button class="btn-primary" style="width:100%" onclick="go('book')">Book Now</button></div>
+        </div>
+        <div class="p-card">
+          <div class="p-cat">Category 3</div>
+          <div class="p-ttl">Non-Residents</div>
+          <div class="p-row"><span class="p-person">Adult</span><span class="p-amt">KSh 9,000 <span>/day</span></span></div>
+          <div class="p-row"><span class="p-person">Child (under 18)</span><span class="p-amt">KSh 4,500 <span>/day</span></span></div>
+          <div style="margin-top:18px"><button class="btn-primary" style="width:100%" onclick="go('book')">Book Now</button></div>
+        </div>
+      </div>
+      <div class="vehicle-note">🚗 <strong>Vehicle fee:</strong> KSh 500 per vehicle per day — applies to all categories</div>
+      <div class="smart-note">🧠 <strong>Smart pricing:</strong> the rates above are low-season weekday base rates. The system automatically applies <strong>+50% July–October (migration peak)</strong>, <strong>+10% on weekends</strong> and <strong>+20% on Kenyan public holidays</strong> when you pick your dates. Annual pass holders enter free — see <a onclick="go('member')" style="color:var(--gold);cursor:pointer;text-decoration:underline">Membership</a>.</div>
+    </div>
+  </section>
+
+  <!-- WILDLIFE -->
+  <section class="wildlife-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-hdr">
+        <div class="sec-tag">What awaits</div>
+        <h2 class="sec-title">Eight wonders of the Mara</h2>
+        <p class="sec-sub">From resident big cats to the world's greatest wildlife spectacle — the Mara delivers year-round.</p>
+      </div>
+      <div class="wildlife-grid">
+        <div class="w-card">
+          <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=700&q=80" alt="Lions">
+          <div class="w-overlay"><div class="w-name">The Marsh Pride</div><div class="w-tag">🦁 Resident lion pride</div></div>
+        </div>
+        <div class="w-card">
+          <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=700&q=80" alt="Migration">
+          <div class="w-overlay"><div class="w-name">Great Migration</div><div class="w-tag">🐃 1.5 million wildebeest</div></div>
+        </div>
+        <div class="w-card">
+          <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=700&q=80" alt="Cheetah">
+          <div class="w-overlay"><div class="w-name">Cheetah Country</div><div class="w-tag">🐆 World's fastest land animal</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section class="modules-section">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="sec-hdr" style="text-align:center">
+        <div class="sec-tag">System modules</div>
+        <h2 class="sec-title">Five modules, one platform</h2>
+        <p class="sec-sub" style="margin:0 auto">Every workflow from visitor arrival to revenue audit is covered by a dedicated module.</p>
+      </div>
+      <div class="mod-grid">
+        <div class="mod-card"><div class="mod-icon">👤</div><div class="mod-ttl">Visitor Registration</div><p class="mod-desc">Capture visitor identity, nationality, and party details. Automatic fee-tier assignment based on category.</p></div>
+        <div class="mod-card"><div class="mod-icon">💳</div><div class="mod-ttl">Online Payment</div><p class="mod-desc">M-Pesa STK push, Airtel Money, Visa/Mastercard, and cash recording with instant confirmation and receipts.</p></div>
+        <div class="mod-card"><div class="mod-icon">🎫</div><div class="mod-ttl">Ticketing & Check-in</div><p class="mod-desc">QR code tickets generated on booking. Gate staff scan any device to validate and log entry in real time.</p></div>
+        <div class="mod-card"><div class="mod-icon">📊</div><div class="mod-ttl">Revenue Analytics</div><p class="mod-desc">Live charts computed from real bookings — revenue trends, payment-method and category breakdowns, CSV export.</p></div>
+        <div class="mod-card"><div class="mod-icon">💬</div><div class="mod-ttl">Help & Feedback</div><p class="mod-desc">Visitor satisfaction ratings and written feedback captured post-visit to drive continuous improvement.</p></div>
+        <div class="mod-card"><div class="mod-icon">🔐</div><div class="mod-ttl">Admin Console</div><p class="mod-desc">Secure management dashboard for KWS staff to oversee operations, manage users, and pull audit trails.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="foot-logo">Maasai Mara PFMS</div>
+        <div class="foot-tag">Sekenani Gate · Narok County, Kenya</div>
+        <p class="foot-desc">A digital fee management system built to modernise visitor experience at one of Africa's greatest wildlife reserves.</p>
+      </div>
+      <div>
+        <div class="foot-hd">Navigation</div>
+        <ul class="foot-links">
+          <li><a onclick="go('home')">Home</a></li>
+          <li><a onclick="go('book')">Book a Ticket</a></li>
+          <li><a onclick="go('verify')">Verify Ticket</a></li>
+          <li><a onclick="go('feedback')">Feedback</a></li>
+          <li><a onclick="go('admin')">Admin</a></li>
+        </ul>
+      </div>
+      <div class="foot-contact">
+        <div class="foot-hd">Contact</div>
+        <p>📍 Sekenani Gate, Narok County, Kenya<br><br>📧 <a href="mailto:sanaremuli35@gmail.com">sanaremuli35@gmail.com</a><br><br>📞 <a href="tel:+254742658886">+254 742 658 886</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Maasai Mara PFMS — Academic demonstration</div>
+      <div class="foot-credit">John Sanare Muli · BIT/2023/52008<br>Mount Kenya University</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══ BOOK A TICKET ══ -->
+<div class="page" id="page-book">
+  <div class="page-hdr">
+    <h1>Book a Ticket</h1>
+    <p>Complete your booking in three steps — your QR ticket arrives instantly.</p>
+  </div>
+  <div class="form-section">
+    <div class="form-wrap">
+      <div class="steps-bar">
+        <div class="step active" id="s1"><div class="step-dot">1</div><div class="step-lbl">Details</div></div>
+        <div class="step" id="s2"><div class="step-dot">2</div><div class="step-lbl">Review</div></div>
+        <div class="step" id="s3"><div class="step-dot">3</div><div class="step-lbl">Payment</div></div>
+        <div class="step" id="s4"><div class="step-dot">✓</div><div class="step-lbl">Confirm</div></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="form-card" id="bs1">
+        <div class="form-ttl">Visitor Information</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input id="b-fn" placeholder="e.g. Hillary"></div>
+          <div class="form-group"><label>Last Name</label><input id="b-ln" placeholder="e.g. Atindah"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email Address</label><input type="email" id="b-em" placeholder="your@email.com"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="b-ph" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Nationality / Category</label>
+            <select id="b-cat">
+              <option value="">Select category...</option>
+              <option value="kenyan">Kenyan Citizen</option>
+              <option value="ea">East African Resident</option>
+              <option value="nonresident">Non-Resident</option>
+            </select>
+          </div>
+          <div class="form-group"><label>National ID / Passport</label><input id="b-id" placeholder="ID or Passport number"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Visit Date</label><input type="date" id="b-dt"></div>
+          <div class="form-group"><label>Duration (days)</label>
+            <select id="b-dy">
+              <option value="1">1 day</option><option value="2">2 days</option>
+              <option value="3">3 days</option><option value="5">5 days</option><option value="7">7 days</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Adults in Party</label><input type="number" id="b-ad" min="1" max="20" value="1"></div>
+          <div class="form-group"><label>Children (under 18)</label><input type="number" id="b-ch" min="0" max="20" value="0"></div>
+        </div>
+        <div class="form-group"><label>Vehicle Registration (optional)</label><input id="b-veh" placeholder="e.g. KCA 123A"></div>
+        <div class="form-actions"><span></span><button class="btn-next" onclick="bNext(2)">Continue to Review →</button></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-card" id="bs2" style="display:none">
+        <div class="form-ttl">Review Your Booking</div>
+        <table class="sum-table" id="sum-tbl"></table>
+        <div id="day-breakdown"></div>
+        <div class="form-actions">
+          <button class="btn-back" onclick="bNext(1)">← Back</button>
+          <button class="btn-next" onclick="bNext(3)">Proceed to Payment →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-card" id="bs3" style="display:none">
+        <div class="form-ttl">Choose Payment Method</div>
+        <div class="pay-opts">
+          <div class="pay-opt sel" id="po-mpesa" onclick="selPay('mpesa')"><div class="ico">📱</div><div class="nm">M-Pesa</div></div>
+          <div class="pay-opt" id="po-airtel" onclick="selPay('airtel')"><div class="ico">📲</div><div class="nm">Airtel Money</div></div>
+          <div class="pay-opt" id="po-card" onclick="selPay('card')"><div class="ico">💳</div><div class="nm">Visa / Mastercard</div></div>
+          <div class="pay-opt" id="po-cash" onclick="selPay('cash')"><div class="ico">💵</div><div class="nm">Cash at Gate</div></div>
+        </div>
+        <div id="pf-mpesa">
+          <div class="form-group"><label>M-Pesa Phone Number</label><input type="tel" id="b-mp" placeholder="+254 7XX XXX XXX"></div>
+          <p style="font-size:.84rem;color:var(--tm);margin-bottom:18px">An STK push will be sent to your phone. Enter your M-Pesa PIN to complete payment.</p>
+        </div>
+        <div id="pf-airtel" style="display:none">
+          <div class="form-group"><label>Airtel Money Number</label><input type="tel" id="b-am" placeholder="+254 73X / 75X / 78X XXX XXX"></div>
+          <p style="font-size:.84rem;color:var(--tm);margin-bottom:18px">A payment prompt will be sent to your Airtel line. Enter your Airtel Money PIN to authorise.</p>
+        </div>
+        <div id="pf-card" style="display:none">
+          <div class="form-group"><label>Card Number</label><input placeholder="1234 5678 9012 3456"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Expiry</label><input placeholder="MM/YY"></div>
+            <div class="form-group"><label>CVV</label><input placeholder="123"></div>
+          </div>
+        </div>
+        <div id="pf-cash" style="display:none">
+          <p style="font-size:.88rem;color:var(--tm);background:var(--cream);padding:16px;border-radius:8px">Your booking is reserved for <strong>48 hours</strong>. Present your reference at the gate and pay cash on arrival.</p>
+        </div>
+        <div style="border-top:1px solid var(--cream-d);padding-top:18px;margin-top:10px;display:flex;justify-content:space-between;font-weight:600;font-size:.95rem">
+          <span>Total Amount</span><span id="pay-tot" style="color:var(--gd)">KSh 0</span>
+        </div>
+        <div class="form-actions">
+          <button class="btn-back" onclick="bNext(2)">← Back</button>
+          <button class="btn-next" onclick="confirmBooking()">Confirm &amp; Pay →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-card" id="bs4" style="display:none">
+        <div class="ticket-success">
+          <div class="suc-icon">✅</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--gd);margin-bottom:7px">Karibu Maasai Mara!</h2>
+          <p style="color:var(--tm)">Booking confirmed — your QR ticket has been generated. Present it at the Sekenani Gate.</p>
+        </div>
+        <div class="ticket-card" id="print-ticket">
+          <div class="tkt-hdr">
+            <div>
+              <div class="tkt-logo">🦁 Maasai Mara PFMS — Sekenani Gate</div>
+              <div style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tm);margin-top:4px">Park Entry Ticket</div>
+              <div id="tkt-ref" style="font-size:.95rem;font-weight:700;color:var(--gd);margin-top:7px;letter-spacing:.04em"></div>
+            </div>
+            <div>
+              <div class="qr-block" id="tkt-qr">▪▫▪<br>▫▪▫<br>▪▫▪<br><span>QR CODE</span></div>
+              <div class="qr-cap">Scan at gate</div>
+            </div>
+          </div>
+          <div id="tkt-body"></div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+          <button class="btn-back" onclick="go('home')">Back to Home</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VERIFY TICKET ══ -->
+<div class="page" id="page-verify">
+  <div class="page-hdr">
+    <h1>Verify a Ticket</h1>
+    <p>Gate agents can scan or enter a ticket reference to validate entry.</p>
+  </div>
+  <div class="form-section">
+    <div class="verify-wrap">
+      <div class="verify-box">
+        <p style="color:var(--tm);font-size:.9rem">Position QR code in frame to scan</p>
+        <div class="qr-frame">
+          <div class="qr-c tl"></div><div class="qr-c tr"></div>
+          <div class="qr-c bl"></div><div class="qr-c br"></div>
+          📷
+        </div>
+        <div class="or-div">or enter manually</div>
+        <div class="form-group" style="text-align:left">
+          <label>Ticket Reference Number</label>
+          <input id="v-ref" placeholder="e.g. PFMS-2026-001234" style="letter-spacing:.04em">
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:6px" onclick="doVerify()">Verify Ticket</button>
+        <div id="v-result" style="display:none;margin-top:22px;padding:18px;border-radius:10px;text-align:left"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FEEDBACK ══ -->
+<div class="page" id="page-feedback">
+  <div class="page-hdr">
+    <h1>Share Your Feedback</h1>
+    <p>Help us improve the Maasai Mara experience for every visitor.</p>
+  </div>
+  <div class="form-section">
+    <div class="fb-wrap">
+      <div class="form-card">
+        <div class="form-ttl">How was your visit?</div>
+        <div class="form-group">
+          <label>Overall experience</label>
+          <div class="stars" id="stars">
+            <span class="star" onclick="rate(1)">★</span>
+            <span class="star" onclick="rate(2)">★</span>
+            <span class="star" onclick="rate(3)">★</span>
+            <span class="star" onclick="rate(4)">★</span>
+            <span class="star" onclick="rate(5)">★</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input id="fb-name" placeholder="Full name"></div>
+          <div class="form-group"><label>Visit Date</label><input type="date" id="fb-dt"></div>
+        </div>
+        <div class="form-group"><label>Ticket Reference</label><input id="fb-ref" placeholder="PFMS-2026-XXXXXX"></div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="fb-cat">
+            <option>Booking Process</option>
+            <option>Gate Experience</option>
+            <option>Wildlife &amp; Safari</option>
+            <option>Staff &amp; Service</option>
+            <option>General</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Comments</label>
+          <textarea rows="5" id="fb-txt" placeholder="Tell us about your experience — what went well, what could be improved..."></textarea>
+        </div>
+        <div class="form-actions"><span></span><button class="btn-next" onclick="doFeedback()">Submit Feedback</button></div>
+        <div id="fb-thanks" style="display:none;text-align:center;padding:22px;background:var(--cream);border-radius:10px;margin-top:18px">
+          <div style="font-size:38px;margin-bottom:10px">🙏</div>
+          <strong style="color:var(--gd)">Thank you for your feedback!</strong>
+          <p style="color:var(--tm);font-size:.85rem;margin-top:7px">Your response helps us make Maasai Mara better for every visitor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MEMBERSHIP ══ -->
+<div class="page" id="page-member">
+  <div class="page-hdr">
+    <h1>Annual Passes &amp; Memberships</h1>
+    <p>Unlimited entry for frequent visitors — your pass is applied automatically at booking.</p>
+  </div>
+  <div class="form-section">
+    <div id="member-active-wrap" style="max-width:560px;margin:0 auto 30px;display:none"></div>
+    <div class="plan-grid" id="plan-grid"></div>
+    <p style="max-width:760px;margin:26px auto 0;text-align:center;font-size:.8rem;color:var(--tm)">Passes are valid for 12 months from purchase, are non-transferable, and cover person entry fees only — vehicle fees still apply. Pass holders present their membership QR with a normal (zero-fee) booking at the gate.</p>
+  </div>
+</div>
+
+<!-- ══ ADMIN ══ -->
+<div class="page" id="page-admin">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div class="sb-lbl">Main</div>
+      <a class="sb-link active" data-tab="overview" onclick="aTab(this,'overview')"><span class="sb-ico">📊</span> Overview</a>
+      <a class="sb-link" data-tab="tickets" onclick="aTab(this,'tickets')"><span class="sb-ico">🎫</span> Tickets</a>
+      <a class="sb-link" data-tab="revenue" onclick="aTab(this,'revenue')"><span class="sb-ico">💰</span> Revenue Analytics</a>
+      <a class="sb-link" data-tab="members" onclick="aTab(this,'members')"><span class="sb-ico">🎟️</span> Memberships</a>
+      <div class="sb-lbl" style="margin-top:12px">System</div>
+      <a class="sb-link" data-tab="settings" onclick="aTab(this,'settings')"><span class="sb-ico">⚙️</span> Settings</a>
+      <a class="sb-link" data-tab="audit" onclick="aTab(this,'audit')"><span class="sb-ico">📋</span> Audit Trail</a>
+      <a class="sb-link" onclick="go('home')"><span class="sb-ico">🏠</span> Back to Site</a>
+    </div>
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <h2 id="a-ttl">Overview Dashboard</h2>
+        <div class="topbar-right">
+          <div class="live-badge"><span class="live-dot"></span> Live</div>
+          <div style="font-size:.78rem;color:var(--tm)">Sekenani Gate · <span id="a-date"></span></div>
+          <div class="adm-user">
+            <div class="adm-user-av" id="adm-user-av">A</div>
+            <div>
+              <div class="adm-user-nm" id="adm-user-name">Admin</div>
+              <div class="adm-user-rl" id="adm-user-role">Staff</div>
+            </div>
+          </div>
+          <button class="btn-logout" onclick="doLogout()">Log Out</button>
+        </div>
+      </div>
+      <div class="admin-content">
+
+        <!-- OVERVIEW -->
+        <div class="atab" id="tab-overview">
+          <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-lbl">Visitors Today</div><div class="kpi-val" id="kpi-visitors">0</div><div class="kpi-chg" id="kpi-visitors-sub">paid entries for today</div></div>
+            <div class="kpi-card" style="border-color:#16a34a"><div class="kpi-lbl">Revenue Today</div><div class="kpi-val" id="kpi-revenue">KSh 0</div><div class="kpi-chg" id="kpi-revenue-sub">KSh 0 this month</div></div>
+            <div class="kpi-card" style="border-color:#2563eb"><div class="kpi-lbl">Active Tickets</div><div class="kpi-val" id="kpi-tickets">0</div><div class="kpi-chg" id="kpi-tickets-sub">valid, awaiting check-in</div></div>
+            <div class="kpi-card" style="border-color:#9333ea"><div class="kpi-lbl">Feedback Score</div><div class="kpi-val" id="kpi-feedback">—</div><div class="kpi-chg" id="kpi-feedback-sub">no reviews yet</div></div>
+          </div>
+          <div class="tbl-card">
+            <div class="tbl-hdr">
+              <div>
+                <div class="tbl-ttl">Recent Bookings</div>
+                <div class="live-updated" id="live-updated">Computed live from booking records</div>
+              </div>
+              <button class="btn-primary" style="padding:8px 16px;font-size:.78rem" onclick="exportCSV('bookings')">Export CSV</button>
+            </div>
+            <table>
+              <thead><tr><th>Reference</th><th>Visitor</th><th>Category</th><th>Party</th><th>Amount</th><th>Method</th><th>Status</th></tr></thead>
+              <tbody id="bookings-tbody"><tr><td colspan="7" style="text-align:center;color:var(--tm)">No bookings yet — make one from the Book a Ticket page, or seed demo data in Settings.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TICKETS -->
+        <div class="atab" id="tab-tickets" style="display:none">
+          <div class="tbl-card">
+            <div class="tbl-hdr">
+              <div>
+                <div class="tbl-ttl">All Tickets</div>
+                <div class="live-updated" id="tickets-count"></div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <input id="tk-search" placeholder="Search ref / name / ID…" style="padding:8px 12px;border:1px solid var(--cream-d);border-radius:6px;font-size:.8rem" oninput="renderTicketsTab()">
+                <button class="btn-primary" style="padding:8px 16px;font-size:.78rem" onclick="exportCSV('bookings')">Export CSV</button>
+              </div>
+            </div>
+            <table>
+              <thead><tr><th>Reference</th><th>Visitor</th><th>ID / Passport</th><th>Visit</th><th>Party</th><th>Amount</th><th>Method</th><th>Status</th></tr></thead>
+              <tbody id="tickets-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- REVENUE ANALYTICS -->
+        <div class="atab" id="tab-revenue" style="display:none">
+          <div class="range-btns">
+            <button class="range-btn" data-r="7" onclick="setRange(7,this)">7 days</button>
+            <button class="range-btn on" data-r="30" onclick="setRange(30,this)">30 days</button>
+            <button class="range-btn" data-r="90" onclick="setRange(90,this)">90 days</button>
+            <button class="range-btn" data-r="0" onclick="setRange(0,this)">All time</button>
+            <span style="flex:1"></span>
+            <button class="btn-primary" style="padding:6px 14px;font-size:.75rem" onclick="exportCSV('bookings')">Export CSV</button>
+          </div>
+          <div class="chart-grid">
+            <div class="chart-card"><h4>📈 Revenue trend (collected, by day)</h4><div class="cwrap"><canvas id="ch-trend"></canvas></div></div>
+            <div class="chart-card"><h4>💳 Revenue by payment method</h4><div class="cwrap"><canvas id="ch-method"></canvas></div></div>
+          </div>
+          <div class="chart-grid">
+            <div class="chart-card"><h4>🌍 Revenue by visitor category</h4><div class="cwrap"><canvas id="ch-cat"></canvas></div></div>
+            <div class="chart-card"><h4>🧾 Summary</h4><table class="mini-tbl" id="rev-summary"></table></div>
+          </div>
+        </div>
+
+        <!-- MEMBERSHIPS -->
+        <div class="atab" id="tab-members" style="display:none">
+          <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="kpi-card"><div class="kpi-lbl">Active Passes</div><div class="kpi-val" id="kpi-mem-active">0</div><div class="kpi-chg">currently valid</div></div>
+            <div class="kpi-card" style="border-color:#16a34a"><div class="kpi-lbl">Membership Revenue</div><div class="kpi-val" id="kpi-mem-rev">KSh 0</div><div class="kpi-chg">all time</div></div>
+            <div class="kpi-card" style="border-color:#ca8a04"><div class="kpi-lbl">Expiring in 30 days</div><div class="kpi-val" id="kpi-mem-exp">0</div><div class="kpi-chg">renewal follow-ups</div></div>
+          </div>
+          <div class="tbl-card">
+            <div class="tbl-hdr">
+              <div><div class="tbl-ttl">All Memberships</div></div>
+              <button class="btn-primary" style="padding:8px 16px;font-size:.78rem" onclick="exportCSV('memberships')">Export CSV</button>
+            </div>
+            <table>
+              <thead><tr><th>Member No.</th><th>Holder</th><th>Plan</th><th>Purchased</th><th>Expires</th><th>Paid</th><th>Status</th></tr></thead>
+              <tbody id="members-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="atab" id="tab-settings" style="display:none">
+          <div class="tbl-card">
+            <div class="tbl-hdr"><div><div class="tbl-ttl">Pricing Rules (read-only demo view)</div><div class="live-updated">In production these are edited in the database — tables fee_rates, seasons, public_holidays, pricing_rules</div></div></div>
+            <div style="padding:16px">
+              <table class="mini-tbl" id="rules-tbl"></table>
+              <h4 style="font-size:.8rem;color:var(--gd);margin:18px 0 8px">Public holidays loaded</h4>
+              <table class="mini-tbl" id="hol-tbl"></table>
+            </div>
+          </div>
+          <div class="tbl-card">
+            <div class="tbl-hdr"><div><div class="tbl-ttl">Demo Data</div><div class="live-updated">Generates realistic historical bookings so the analytics have something to show. Clearly tagged, one click to remove.</div></div></div>
+            <div style="padding:16px;display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn-primary" onclick="seedDemoData()">🌱 Seed 30 days of demo bookings</button>
+              <button class="btn-back" onclick="clearDemoData()">🧹 Remove demo bookings</button>
+            </div>
+            <div class="set-note" style="margin:0 16px 16px">🔐 <strong>Security notes (demo vs production):</strong> passwords here are salted &amp; SHA-256-hashed in browser storage with login throttling after 5 failed attempts — acceptable for an academic demo only. Production moves authentication server-side (bcrypt/argon2, sessions/JWT), M-Pesa &amp; Airtel credentials never touch the browser, and card data goes straight to the gateway (PCI-DSS) — the site only ever stores gateway references. See the schema file header for the API contract.</div>
+          </div>
+        </div>
+
+        <!-- AUDIT -->
+        <div class="atab" id="tab-audit" style="display:none">
+          <div class="tbl-card">
+            <div class="tbl-hdr">
+              <div>
+                <div class="tbl-ttl">Audit Trail — Logins &amp; System Activity</div>
+                <div class="live-updated">Every sign-in, registration, booking, payment and check-in is recorded with its exact date &amp; time</div>
+              </div>
+            </div>
+            <table>
+              <thead><tr><th>Date &amp; Time</th><th>User</th><th>Email</th><th>Role</th><th>Action</th></tr></thead>
+              <tbody id="audit-tbody"><tr><td colspan="5" style="text-align:center;color:var(--tm)">No activity recorded yet.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN LOGIN ══ -->
+<div class="page" id="page-login">
+  <div class="page-hdr">
+    <h1>Staff Login</h1>
+    <p>Sign in to access the admin console and live booking data.</p>
+  </div>
+  <div class="form-section">
+    <div class="login-wrap">
+      <div class="login-box">
+        <div class="login-icon">🔐</div>
+        <h3>Welcome back</h3>
+        <div class="login-sub">Sekenani Gate · Admin Console</div>
+
+        <div class="login-err" id="lg-err"></div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="lg-em" placeholder="you@pfms.go.ke" onkeydown="if(event.key==='Enter')document.getElementById('lg-pw').focus()">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="pw-field">
+            <input type="password" id="lg-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+            <span class="pw-toggle" onclick="togglePw()" id="pw-eye">show</span>
+          </div>
+        </div>
+        <div class="form-group" style="display:flex;align-items:center;gap:8px;margin-bottom:24px">
+          <input type="checkbox" id="lg-remember" style="width:auto">
+          <label style="margin:0;text-transform:none;font-weight:400;font-size:.82rem;color:var(--tm)">Keep me signed in</label>
+        </div>
+        <button class="btn-primary" style="width:100%" onclick="doLogin()">Sign In →</button>
+
+        <div class="login-hint">
+          <strong>Demo credentials</strong> (role-based access)<br>
+          admin@pfms.go.ke / admin123 — full console<br>
+          ranger@pfms.go.ke / ranger123 — tickets &amp; check-in<br>
+          finance@pfms.go.ke / finance123 — revenue &amp; memberships
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CLIENT LOGIN / ACCOUNT ══ -->
+<div class="page" id="page-clogin">
+  <div class="page-hdr">
+    <h1 id="cl-hdr-ttl">Visitor Sign In</h1>
+    <p id="cl-hdr-sub">Sign in or create a free account to book and manage your Maasai Mara tickets.</p>
+  </div>
+  <div class="form-section">
+
+    <!-- Auth view (logged out) -->
+    <div class="login-wrap" id="cl-auth-view">
+      <div class="login-box">
+        <div class="login-icon">👤</div>
+        <h3>Welcome, visitor</h3>
+        <div class="login-sub">An account is required to book tickets</div>
+
+        <div class="login-err" id="cl-err"></div>
+        <div class="login-ok" id="cl-ok"></div>
+
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="at-login" onclick="authTab('login')">Sign In</div>
+          <div class="auth-tab" id="at-reg" onclick="authTab('reg')">Create Account</div>
+        </div>
+
+        <div id="cl-login-form">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="cl-em" placeholder="your@email.com" onkeydown="if(event.key==='Enter')document.getElementById('cl-pw').focus()">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="cl-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')cLogin()">
+          </div>
+          <button class="btn-primary" style="width:100%;margin-top:6px" onclick="cLogin()">Sign In →</button>
+        </div>
+
+        <div id="cl-reg-form" style="display:none">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input id="cr-fn" placeholder="e.g. Hillary"></div>
+            <div class="form-group"><label>Last Name</label><input id="cr-ln" placeholder="e.g. Atindah"></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="cr-em" placeholder="your@email.com"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="cr-ph" placeholder="07XX XXX XXX"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Password</label><input type="password" id="cr-pw" placeholder="Min 6 characters"></div>
+            <div class="form-group"><label>Confirm Password</label><input type="password" id="cr-pw2" placeholder="Repeat password"></div>
+          </div>
+          <button class="btn-primary" style="width:100%;margin-top:6px" onclick="cRegister()">Create Account →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account view (logged in) -->
+    <div class="login-wrap" id="cl-account-view" style="display:none;max-width:560px">
+      <div class="login-box" id="cl-account-box"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ M-PESA STK PUSH MODAL ══ -->
+<div class="modal-ov" id="stk-modal">
+  <div class="modal" id="stk-body"></div>
+</div>
+
+<!-- QR generation happens locally in the browser (no ticket data sent to third parties) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<!-- Charts render from real booking records; if this CDN is unreachable the dashboard falls back to tables -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
