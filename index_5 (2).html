@@ -9,7 +9,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --gd:#0d2818;--gp:#1a4a28;--gl:#2d6e42;
-  --gold:#c9a227;--gold-l:#e8c547;
+  --gold:#b8860b;--gold-l:#e8c547;
   --cream:#f8f4ed;--cream-d:#ede8dd;
   --td:#1a1a1a;--tm:#4a4a4a;--white:#fff
 }
@@ -357,6 +357,12 @@ tr.live-row{animation:rowIn .5s ease}
 </style>
 </head>
 <body>
+  <!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="go('home')">
+  <div class="nav-logo-icon">🦁</div>
+    <div class="nav-logo-text">Maasai Mara PFMS<span>Sekenani Gate</span></div>
+  </div>
   <ul class="nav-links" id="navLinks">
     <li><a onclick="go('home')" id="nl-home" class="active">Home</a></li>
     <li><a onclick="go('book')" id="nl-book">Book a Ticket</a></li>
