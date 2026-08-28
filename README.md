@@ -6,6 +6,12 @@ A booking, ticketing, membership, and admin platform for the Maasai Mara
 payment flows, annual membership passes, gate ticket verification, and
 a live revenue/analytics dashboard for staff.
 
+## 🔗 Live demo
+
+[**Open the app in your browser**](https://sanaremuli.github.io/an-intelligent-park-fee-management-system/an-intelligent-park-fee-management-system/pfms/index.html)
+
+Hosted on GitHub Pages — it redeploys automatically on every push to `main`, so this link always reflects the current code. (If it 404s, GitHub Pages needs to be turned on once, under repo Settings → Pages → Deploy from branch `main` / root.)
+
 ## Project structure
 
 ```
